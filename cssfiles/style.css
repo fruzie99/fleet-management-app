@@ -6,10 +6,18 @@
 }
 
 
-.navbar{
-    background-color: #7d6d6d;
+nav{
+    background-color: #b1cdd2;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+
+#form{
+    width:25%;
+    margin: auto;
+    border-right:1px solid #9afcfd
+    
 }
