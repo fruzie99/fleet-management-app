@@ -1,36 +1,71 @@
-let fleetData=[];
- document.getElementById("addBtn").addEventListener("click", () => {
-     const regno=document.getElementById("regno").value.trim();
-     const category=document.getElementById("category").value.trim();
-     const availability=document.getElementById("isAvailable").value.trim();
-     const driver=document.getElementById("driver").value.trim();
-     
-     if (!regno||!driver) return window.alert("please fill all the fields");
-     fleetData.push({regno, category, availability, driver});
-     renderCards(fleetData);
-     
- })
+document.addEventListener("DOMContentLoaded", () => {
+    let fleetData=[];
 
-function renderCards(Data) {
+    const addBtn=document.getElementById("addBtn");
     const container=document.getElementById("container");
+    const categoryFilter=document.getElementById("categoryFilter");
+    const availabilityFilter=document.getElementById("availabilityFilter");
+    const clearFilter=document.getElementById("clearFilter");
+    if (!container) return console.error("Container not found");
+ if (addBtn){
+addBtn.addEventListener("click",()=>{
+    const regno=document.getElementById("regno").value.trim();
+    const category=document.getElementById("category").value.trim();
+    const availability=document.getElementById("isAvailable").value.trim();
+    const driver=document.getElementById("driver").value.trim();
+    if (!regno||!driver) return window.alert("please fill all the fields");
+    fleetData.push({regno, category, availability, driver});
+    renderCards(fleetData);
+});
+ }
+
+
+
+function renderCards(dataArray=fleetData) {
+    
     container.innerHTML="";
 
 
-    data.forEach((item,index)=>{
-        const cards= document.createElement("div");
-        cards.classList.add("card");
-        cards.innerHTML=
+    dataArray.forEach((item)=>{
+        const realIndex=fleetData.indexOf(item);
+        const card= document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML=
         `
         <h3>${item.regno}</h3>
         <p>${item.category}</p>
         <p>${item.availability}</p>
         <p>${item.driver}</p>
-        <button onclick="deleteCard(${index})">Delete</button>
+        <div class="card-actions"
+        <button class="updateBtn" onclick="update(${realIndex})">UpdateBtn
+        </button>
+        <button class="deleteBtn" onclick="deleteVehicle(${realIndex})">DeleteBtn
+        </button>
+        <button class="availBtn" onclick="changeAvailability(${realIndex})">Change Availability</button>
+        </div>
+        
 
         `;
-        container.appendChild(cards);
+        container.appendChild(card);
     })
 
+
+container.querySelectorAll(".deleteBtn").forEach((btn)=>{
+    btn.addEventListener("click",(e)=>{
+        deleteVehicle(Number(e.currentTarget.dataset.index));
+    });
+});
+}
+container.querySelectorAll(".availBtn").forEach((btn)=>{
+    btn.addEventListener("click",(e)=>{
+        changeAvailability(Number(e.currentTarget.dataset.index));
+    });
+});
+container.querySelectorAll(".updateBtn").forEach((btn)=>{
+    btn.addEventListener("click",(e)=>{
+        update(Number(e.currentTarget.dataset.index));
+    });
+})
 
 
     //update driver
@@ -76,3 +111,4 @@ document.getElementById("categoryFilter").addEventListener("change", () => {
   document.getElementById("clearFilter").addEventListener("click", () => {
     renderCards(fleetData);
   });
+})
