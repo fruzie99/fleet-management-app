@@ -8,8 +8,5 @@ if (email ==="admin@gmail.com" && password === "admin1234") {
     window.alert("Invalid email or password");
 
 
-
-
-
 }
 });
