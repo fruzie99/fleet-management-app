@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Fleet Management App
+    </title>
 </head>
 <body>
-    
+
+
+    <nav>
+        <select id="categoryFilter">
+            <option value="All">All</option>
+            <option value="Car">Car</option>
+            <option value="Bus">Bus</option>
+            <option value="Truck">Truck</option>
+            <option value="Bike">Bike</option>
+        </select>
+
+        <select id="availabilityFilter">
+            <option value="Available">Available</option>
+            <option value="Unavailable">Unavailable</option>
+        
+        </select>
+
+        <button id="clearFilter">Clear Filter</button>
+    </nav>
+
+
+    <div id="form">
+        <input id="regno" placeholder="regno"/>
+        <select id ="category" aria-placeholder="Vehicle category">
+            <option value="Car">Car</option>
+            <option value="Bus">Bus</option>
+            <option value="Truck">Truck</option>
+            <option value="Bike">Bike</option>
+
+        </select>
+        <input id ="driver" placeholder="drivername">
+ <select id="isAvailable" aria-placeholder="Availability">
+    <option value="true">Available</option>
+    <option value="false">Unavailable</option>
+ </select>
+        <button id="addButton">Add Fleet</button>
+
+
+
+    </div>
+    <div id="fleetConatainer"></div>
+<script src="script.js"></script>    
 </body>
 </html>
